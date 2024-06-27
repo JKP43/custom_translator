@@ -1,12 +1,17 @@
 import requests, uuid, json
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env
+load_dotenv()
 
 # Add your key and endpoint
-key = 'TRANSLATOR_API_KEY'
+key = os.getenv('TRANSLATOR_API_KEY')
 endpoint = "https://api.cognitive.microsofttranslator.com"
 
 # location, also known as region.
 # required if you're using a multi-service or regional (not global) resource. It can be found in the Azure portal on the Keys and Endpoint page.
-location = 'TRANSLATOR_API_KEY'
+location = os.getenv('TRANSLATOR_LOCATION')
 
 path = '/translate'
 constructed_url = endpoint + path
