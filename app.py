@@ -11,6 +11,7 @@ translated_text = None
 def index():
     return render_template('index.html')
 
+# Translate using POST
 @app.route('/translate', methods=['POST'])
 def translate():
     global translated_text
@@ -22,6 +23,7 @@ def translate():
 
     return jsonify({'translated_text': translated_text})
 
+# Download the translated text
 @app.route('/download')
 def download():
     global translated_text

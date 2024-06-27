@@ -17,6 +17,9 @@ path = '/translate'
 constructed_url = endpoint + path
 
 
+# Function for translating text 
+# Inputs: Text to translate, what language the input text is, language to translate to
+# Output: Translated text of the desired language
 def translate_text(text, from_language, to_language):
     headers = {
         'Ocp-Apim-Subscription-Key': key,
