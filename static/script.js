@@ -29,4 +29,22 @@ document.getElementById('translateForm').addEventListener('submit', async (event
     
     // Automatically resize textarea after translation if needed
     autoResizeTextarea();
+    
+});
+
+// Event listener for the download button
+document.getElementById('downloadButton').addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    // Send a GET request to the /download route
+    const response = await fetch('/download');
+    const blob = await response.blob();
+
+    // Create a temporary download link and click it programmatically
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'translated_text.txt';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
 });
