@@ -32,12 +32,37 @@ document.getElementById('translateForm').addEventListener('submit', async (event
     
 });
 
+// // Event listener for the download button
+// document.getElementById('downloadButton').addEventListener('click', async (event) => {
+//     event.preventDefault();
+
+//     // Send a GET request to the /download route
+//     const response = await fetch('/download');
+//     const blob = await response.blob();
+
+//     // Create a temporary download link and click it programmatically
+//     const downloadLink = document.createElement('a');
+//     downloadLink.href = URL.createObjectURL(blob);
+//     downloadLink.download = 'translated_text.txt';
+//     document.body.appendChild(downloadLink);
+//     downloadLink.click();
+//     document.body.removeChild(downloadLink);
+// });
+
 // Event listener for the download button
 document.getElementById('downloadButton').addEventListener('click', async (event) => {
     event.preventDefault();
 
-    // Send a GET request to the /download route
-    const response = await fetch('/download');
+    const translatedText = document.getElementById('translatedText').innerText;
+
+    const response = await fetch('/download', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ translatedText: translatedText })
+    });
+
     const blob = await response.blob();
 
     // Create a temporary download link and click it programmatically
