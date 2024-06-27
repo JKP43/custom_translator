@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Custom Translator</h1>
+        <form id="translateForm">
+            <div class="translation-container">
+                <div class="input-section">
+                    <label for="fromLanguage">From:</label>
+                    <select id="fromLanguage">
+                        <option value="ja">Japanese</option>
+                        <option value="ko">Korean</option>
+                        <option value="en">English</option>
+                        <!-- Add more languages as needed -->
+                    </select>
+                    <textarea id="textToTranslate" placeholder="Enter text to translate"></textarea>
+                </div>
+                <div class="output-section">
+                    <label for="toLanguage">To:</label>
+                    <select id="toLanguage">
+                        <option value="ko">Korean</option>
+                        <option value="ja">Japanese</option>
+                        <option value="en">English</option>
+                        <!-- Add more languages as needed -->
+                    </select>
+                    <div id="translatedText" class="translated-text-box"><pre></pre></div>
+                </div>
+            </div>
+            <button type="submit">Translate</button>
+        </form>
+    </div>
+</body>
+</html>
