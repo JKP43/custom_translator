@@ -43,7 +43,7 @@ document.getElementById('downloadButton').addEventListener('click', async (event
     // Create a temporary download link and click it programmatically
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = 'translated_text.txt';
+    downloadLink.download = '/tmp/translated_text.txt';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);

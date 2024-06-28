@@ -30,7 +30,7 @@ def download():
         # Write the translated text to a file with utf-8 encoding
         with open('/tmp/translated_text.txt', 'w', encoding='utf-8') as f:
             f.write(translated_text)
-        return send_file('translated_text.txt', as_attachment=True)
+        return send_file('/tmp/translated_text.txt', as_attachment=True)
     else:
         return "No file to download"
 
