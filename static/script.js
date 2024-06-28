@@ -32,36 +32,36 @@ document.getElementById('translateForm').addEventListener('submit', async (event
     
 });
 
-// // Event listener for the download button
-// document.getElementById('downloadButton').addEventListener('click', async (event) => {
-//     event.preventDefault();
-
-//     // Send a GET request to the /download route
-//     const response = await fetch('/download');
-//     const blob = await response.blob();
-
-//     // Create a temporary download link and click it programmatically
-//     const downloadLink = document.createElement('a');
-//     downloadLink.href = URL.createObjectURL(blob);
-//     downloadLink.download = 'translated_text.txt';
-//     document.body.appendChild(downloadLink);
-//     downloadLink.click();
-//     document.body.removeChild(downloadLink);
-// });
-
 // Event listener for the download button
-document.getElementById('downloadButton').addEventListener('click', (event) => {
+document.getElementById('downloadButton').addEventListener('click', async (event) => {
     event.preventDefault();
 
-    const translatedText = document.getElementById('translatedText').innerText;
-    const blob = new Blob([translatedText], {type: "text/plain;charset=utf-8"});
-    const url = URL.createObjectURL(blob);
+    // Send a GET request to the /download route
+    const response = await fetch('/download');
+    const blob = await response.blob();
 
     // Create a temporary download link and click it programmatically
     const downloadLink = document.createElement('a');
-    downloadLink.href = url;
+    downloadLink.href = URL.createObjectURL(blob);
     downloadLink.download = 'translated_text.txt';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
 });
+
+// // Event listener for the download button
+// document.getElementById('downloadButton').addEventListener('click', (event) => {
+//     event.preventDefault();
+
+//     const translatedText = document.getElementById('translatedText').innerText;
+//     const blob = new Blob([translatedText], {type: "text/plain;charset=utf-8"});
+//     const url = URL.createObjectURL(blob);
+
+//     // Create a temporary download link and click it programmatically
+//     const downloadLink = document.createElement('a');
+//     downloadLink.href = url;
+//     downloadLink.download = 'translated_text.txt';
+//     document.body.appendChild(downloadLink);
+//     downloadLink.click();
+//     document.body.removeChild(downloadLink);
+// });
