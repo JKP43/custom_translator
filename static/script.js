@@ -50,24 +50,16 @@ document.getElementById('translateForm').addEventListener('submit', async (event
 // });
 
 // Event listener for the download button
-document.getElementById('downloadButton').addEventListener('click', async (event) => {
+document.getElementById('downloadButton').addEventListener('click', (event) => {
     event.preventDefault();
 
     const translatedText = document.getElementById('translatedText').innerText;
-
-    const response = await fetch('/download', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ translatedText: translatedText })
-    });
-
-    const blob = await response.blob();
+    const blob = new Blob([translatedText], {type: "text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
 
     // Create a temporary download link and click it programmatically
     const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.href = url;
     downloadLink.download = 'translated_text.txt';
     document.body.appendChild(downloadLink);
     downloadLink.click();
